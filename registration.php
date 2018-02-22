@@ -45,7 +45,9 @@
             if(preg_match($reg_email, $_POST['email']))
               $email = strip_tags(trim( $_POST['email']));
 
-            
+
+
+
 
           }
             //variable that hold database information
