@@ -44,7 +44,6 @@
 
             if(preg_match($reg_email, $_POST['email']))
               $email = strip_tags(trim( $_POST['email']));
-              
               if(!empty($_POST["password"]) && ($_POST["password"] == $_POST["cpassword"])) {
                   $password = test_input($_POST["password"]);
                   $cpassword = test_input($_POST["cpassword"]);
@@ -74,11 +73,11 @@
             //variable that hold database information
             $dbhost = 'localhost' ;
             $username = 'root' ;
-            $password = '';
-            $database = 'users' ;
+            $dbpassword = '';
+            $database = 'userdatabase' ;
 
             //creating connection to the database
-            $mysqli = new mysqli("$dbhost", "$username", "$password", "$database");
+            $mysqli = new mysqli("$dbhost", "$username", "$dbpassword", "$database");
             if($mysqli->connect_error){
                die("Connection Failed" . $conn->connect_error);
             }
@@ -86,26 +85,12 @@
               echo "Connection Successful" . "<br>" ;
             }
 
-            //sql query to insert form data into database table (userTable)
-            $sql = "insert into user (UserName, EmailAddress, Password)
-            Values ('$user', '$email', '$address', '$code', '$phone', '$bio')";
-
-            if (mysqli_query($mysqli, $sql)) {
-              echo "New record created successfully";
-            }
-            else {
-                echo "Error: " . $sql . "<br>" . mysqli_error($mysqli);
-            }
-          }
-
-
-
       ?>
     </div>
 
 
     <div class="main-body-Form">
-     <form id="userForm" action="newUser.php" method="post">
+     <form id="userForm" action="registration.php" method="post">
 
           UserName:<br>
           <input type="text" name="name" pattern="[a-zA-Z]{1,15}" title ="UserName should only contain letters e.g KHAN or khan" required/><br>
@@ -113,9 +98,9 @@
           <input type="text" name="email" pattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Invalid Email!!!" required/><br>
           Password:<br>
           <input type="password" name="password" required/><br>
-          retype-Password:
+          retype-Password:<br>
               <input type="password" name="rpassword" required/><br>
-          <input type="submit" name="submit" value="register" />
+          <input type="submit" name="submit" value="register" /><br>
 
      </form>
      <div>
