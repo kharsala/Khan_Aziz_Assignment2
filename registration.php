@@ -16,8 +16,9 @@
 
                     <nav id="#ac-globalnav">
 
+                          <a href="index.php">Home</a>
                         <a href="registration.php">Sign-up</a>
-                        <a href="index.php">Home</a>
+
                     </nav>
 
                   </header>
@@ -68,11 +69,7 @@
                 $stmt->execute();
                 echo"New Record created Sucessfully";
                 $stmt->close();
-
-
               }
-
-
       ?>
     </div>
 
@@ -86,7 +83,6 @@
           <input type="text" name="email" pattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Invalid Email!!!" required/><br>
           Password:<br>
           <input type="password" name="password"  required/><br>
-
           <input type="submit" name="submit" value="register" /><br>
 
      </form>
