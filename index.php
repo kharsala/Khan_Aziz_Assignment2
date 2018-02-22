@@ -11,11 +11,13 @@
       <nav id="#ac-globalnav">
 
           <a href="registration.php">Sign-Up</a>
-          <a href="login.php">Sign-In</a>
+          <a href="login.php">Login</a>
+          <a href ="Admin.php">Admin-Login</a>
           <a href ="ProfileMgmt.php"> My-Profile</a>
 
+
       </nav>
-  
+
   </header>
     <h1 class="names"> Assignment 2 </h1>
 
