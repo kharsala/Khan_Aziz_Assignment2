@@ -12,8 +12,10 @@
 
           <a href="registration.php">Sign-Up</a>
           <a href="login.php">Sign-In</a>
+          <a href ="ProfileMgmt.php"> My-Profile</a>
 
       </nav>
+  
   </header>
     <h1 class="names"> Assignment 2 </h1>
 
