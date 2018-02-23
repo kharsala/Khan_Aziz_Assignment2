@@ -28,16 +28,22 @@
     <div>
      <?php
 
+          //this is the file for the database connector
           require_once 'ConnectorDb.php';
           //variables that hold regex for validation
            $reg_name = "/^[a-zA-Z ]*$/";
            $reg_email="/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/";
            $reg_pass = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/";
-        
-            $stmt = $mysqli -> prepare ("insert into users (UserName, EmailAddress, Password ) values (?,?,?) ");
-            $stmt ->bind_param("sss", $user, $email, $password );
 
-            if(isset($_POST['submit']))
+           //defining variables username and password
+           $user = $password = $confPassword = "";
+           $user_err = $password_err = $conf_pass_err = "";
+
+            $stmt = $mysqli -> prepare ("insert into users (UserName, EmailAddress, Password ) values (?,?,?) ");
+
+            $stmt ->bind_param("sss", $user, $email, $password );
+          //isset($_POST['submit'])
+            if($_SERVER["REQUEST_METHOD"] == "POST")
             {
               //data entered in the form on newUser.php page
               if((string)preg_match($reg_name, $_POST['name']))
@@ -52,7 +58,9 @@
 
                 $stmt->execute();
                 echo"New Record created Sucessfully";
+
                 $stmt->close();
+                header("location: login.php");
               }
       ?>
     </div>
