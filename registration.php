@@ -27,29 +27,13 @@
       <h1>New-User</h1>
     <div>
      <?php
+
+          require_once 'ConnectorDb.php';
           //variables that hold regex for validation
            $reg_name = "/^[a-zA-Z ]*$/";
            $reg_email="/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/";
            $reg_pass = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/";
-          // $reg_code ="/^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$/";
-           //$reg_phone ="/\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/";
-           //variables hold the array of words to be removed from address and bio fields
-           //$sql_keywords = array("select", "insert", "update", "delete", "#", "--");
-          // $sql_replace = array("choose","place","improve","cut", "", "");
-
-
-
-            //variable that hold database information
-            $dbhost = 'localhost' ;
-            $username = 'root' ;
-            $dbpassword = '';
-            $database = 'userdatabase' ;
-
-            //creating connection to the database
-            $mysqli = new mysqli("$dbhost", "$username", "$dbpassword", "$database");
-            if($mysqli->connect_error){
-               die("Connection Failed" . $conn->connect_error);
-            }
+        
             $stmt = $mysqli -> prepare ("insert into users (UserName, EmailAddress, Password ) values (?,?,?) ");
             $stmt ->bind_param("sss", $user, $email, $password );
 
