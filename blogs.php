@@ -1,6 +1,6 @@
 <?php
   session_start();
-  include_once("blogDb.php");
+ include_once('ConnectorDb.php');
 ?>
 
 

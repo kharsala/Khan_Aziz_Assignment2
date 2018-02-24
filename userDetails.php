@@ -20,17 +20,7 @@
       </div>
       <?php
 
-                  $dbhost = 'localhost' ;
-                  $username = 'root' ;
-                  $password = '';
-                  $database = 'userdatabase' ;
-
-                //  $user_ID = $_POST['id'] ;
-
-                  $mysqli = new mysqli("$dbhost", "$username", "$password", "$database");
-                  if($mysqli->connect_error){
-                     die("Connection Failed" . $conn->connect_error);
-                  }
+               include_once('ConnectorDb.php');
 
                   $result = $mysqli->query("SELECT Id, UserName, EmailAddress FROM users");
                   echo "<h1>User Detail</h1>" ;

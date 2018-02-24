@@ -8,7 +8,6 @@
             //striping the input data of the tags
             $username = strip_tags($_POST['username']);
             $email = strip_tags($_POST['email']);
-            if(strlen($_POST['password']) < 8)
             $password = strip_tags($_POST['password']);
             $cpassword = strip_tags($_POST['cpassword']);
 

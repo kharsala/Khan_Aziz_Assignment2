@@ -1,7 +1,6 @@
 <?php
   session_start();
-  include_once("blogDb.php");
-
+ include_once('ConnectorDb.php');
 
 
   if($_SERVER["REQUEST_METHOD"] == "POST")
@@ -15,7 +14,7 @@
 
           $stmt->execute();
           $stmt->close();
-          
+
          echo"Blog Sucessfuly Posted";
 
 
