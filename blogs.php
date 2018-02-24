@@ -15,7 +15,7 @@
       <nav id="#ac-globalnav">
 
           <a href="index.php">Home</a>
-          <a href="login.php">Login</a>
+         
 
           <!--<a href ="Admin.php">Admin-Login</a> -->
         <!--  <a href ="ProfileMgmt.php"> My-Profile</a> -->

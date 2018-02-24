@@ -21,6 +21,7 @@ if(!isset($_SESSION['id'])){
 
           <a href="logout.php">logout</a>
           <a href="blogs.php">View-Blogs</a>
+          <a href="post.php">Create-Post</a>
           <!--<a href ="Admin.php">Admin-Login</a> -->
         <!--  <a href ="userPage.php"> My-Profile</a> -->
       </nav>
