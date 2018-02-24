@@ -1,7 +1,7 @@
 <?php
 
      //this is the file for the database connector
-     require_once 'ConnectorDb.php';
+     include_once('ConnectorDb.php');
      //variables that hold regex for validation
       $reg_name = "/^[a-zA-Z ]*$/";
       $reg_email="/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/";
@@ -30,7 +30,7 @@
            $stmt->execute();
            $stmt->close();
           echo"New Record created Sucessfully";
-        //  header("location: index.php");
+        header("location: index.php");
 
          }
  ?>
