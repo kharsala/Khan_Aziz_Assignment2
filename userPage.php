@@ -19,9 +19,8 @@ if(!isset($_SESSION['id'])){
     <header>
       <nav id="#ac-globalnav">
 
-          <a href="registration.php">Sign-Up</a>
-          <a href="login.php">Login</a>
-        <!--  <a href="blogs.php">Blogs</a> -->
+          <a href="logout.php">logout</a>
+          <a href="blogs.php">View-Blogs</a>
           <!--<a href ="Admin.php">Admin-Login</a> -->
         <!--  <a href ="userPage.php"> My-Profile</a> -->
       </nav>
