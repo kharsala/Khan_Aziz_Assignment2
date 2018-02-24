@@ -26,6 +26,13 @@ a:hover
 #login:hover{
     color: Green;
 }
+#blog_pst{
+  text-align: center;
+}
+.title{
+    text-align: center;
+    color: black;
+}
 h1{
   text-align: center;
 }
@@ -149,8 +156,27 @@ input[type=reset] {
 input[type=submit]:hover {
     background-color: #45a049;
 }
+textarea{
+  width: 15%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 5px 10px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
 img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  margin: auto;
+   border: 3px solid green;
+   padding: 1px;
+}
+#margin{
   display: block;
   margin-left: auto;
   margin-right: auto;

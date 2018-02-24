@@ -23,7 +23,7 @@
 
 <body>
   <!-- Using the nbbc parser-->
-    <h1 class="names"> Assignment 2 </h1>
+    <!--<h1 class="names"> Assignment 2 </h1> -->
   <?php
     require_once("nbbc/nbbc.php");
     //creating a bbcode object
@@ -42,16 +42,13 @@
         $content = $row['content'];
         $date = $row['date'];
 
+        $admin = "<div><a herf = 'deletePost.php?pid=$id'>Delete</a> &nbsp <a herf = 'deletePost.php?pid=$id'>Delete</a></div>";
         //this will format everything removing tags
         $output = $bbcode ->Parse($content);
-
-            echo  $id ;
-            echo $title;
-            echo  $output;
-            echo  $date;
-
-
+       @ $posts  .=  "<div id= 'blog_pst'><h1><a class='title' herf='see_post.php?pid=$id'>$title</a></h1><h3>$date</h3><p>$output</p>$admin</div>";
       }
+      echo $posts;
+      echo $admin;
     }else{
       echo "Not Posts Yet";
     }
