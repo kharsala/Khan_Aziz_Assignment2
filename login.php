@@ -1,12 +1,19 @@
-
-
 <?php
-// Include config file
-//require_once 'config.php';
 
+ require_once 'ConnectorDb.php';
 // Define variables and initialize with empty values
 $username = $password = "";
 $username_err = $password_err = "";
+
+// Prepare a select statement
+$sql = "SELECT username, password FROM users WHERE UserName = ? AND Password = ?";
+//$stmt = $mysqli -> prepare ("SELECT UserName, Password FROM users where UserName = '$user' AND Password = '$password' ");
+if($stmt = mysqli_prepare($mysqli, $sql)){
+    // Bind variables to the prepared statement as parameters
+  //  mysqli_stmt_bind_param($stmt, "ss", $param_user, $param_password);
+  $stmt = $mysqli -> prepare ( $sql  );
+
+  $stmt ->bind_param("ss", $param_user, $param_password );
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -25,24 +32,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $password = trim($_POST['password']);
     }
     //variable that hold database information
-    $dbhost = 'localhost' ;
-    $username = 'root' ;
-    $dbpassword = '';
-    $database = 'userdatabase' ;
 
-    //creating connection to the database
-    $mysqli = new mysqli("$dbhost", "$username", "$dbpassword", "$database");
-    if($mysqli->connect_error){
-       die("Connection Failed" . $conn->connect_error);
-    }
-    // Validate credentials
     if(empty($user_err) && empty($password_err)){
-        // Prepare a select statement
-        $sql = "SELECT username, password FROM users WHERE UserName = ? AND Password = ?";
-        //$stmt = $mysqli -> prepare ("SELECT UserName, Password FROM users where UserName = '$user' AND Password = '$password' ");
-        if($stmt = mysqli_prepare($mysqli, $sql)){
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ss", $param_user, $param_password);
 
             // Set parameters
             $param_user = $username;
@@ -58,12 +49,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     // Bind result variables
                     mysqli_stmt_bind_result($stmt, $user, $password);
                     if(mysqli_stmt_fetch($stmt)){
-                        if(password_verify($password)){
+                        if(password_verify( $password)){
                             /* Password is correct, so start a new session and
                             save the username to the session */
                             session_start();
                             $_SESSION['username'] = $user;
-                            header("location: welcome.php");
+                            header("location: index.php");
                         } else{
                             // Display an error message if password is not valid
                             $password_err = 'Invalid Password Entered';
@@ -79,7 +70,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
 
         // Close statement
-      //  mysqli_stmt_close($mysqli);
+        $stmt->execute();
+        $stmt->close();
     }
 
     // Close connection
@@ -92,31 +84,27 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <style type="text/css">
-        body{ font: 14px sans-serif; }
-        .wrapper{ width: 350px; padding: 20px; }
-    </style>
+    <link href="app.css" rel="stylesheet" type="text/css" >
+
 </head>
 <body>
-    <div class="wrapper">
+    <div div class="main-body-Form">
         <h2>Login</h2>
-        <p>Please Enter Credentials</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                <label>Username</label>
+                Username:<br>
                 <input type="text" name="username"class="form-control" value="<?php echo $username; ?>">
                 <span class="help-block"><?php echo $username_err; ?></span>
             </div>
             <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                <label>Password</label>
+                Password:<br>
                 <input type="password" name="password" class="form-control">
                 <span class="help-block"><?php echo $password_err; ?></span>
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
-            <p>Don't have an account? <a href="registration.php">Sign up now</a>.</p>
+            <p>Don't have an account? <a id = "login" href="registration.php">Sign-Up</a></p>
         </form>
     </div>
 
