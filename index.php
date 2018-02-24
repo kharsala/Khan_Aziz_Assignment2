@@ -1,13 +1,3 @@
-<?php
-session_start();
-if(!isset($_SESSION['id'])){
-
-  header("Location: login.php");
-
-
-}
-
-?>
 
 <html>
 
@@ -16,24 +6,23 @@ if(!isset($_SESSION['id'])){
   <title>Welcome_Blog</title>
 </head>
 
-    <header>
-      <nav id="#ac-globalnav">
-
-          <a href="registration.php">Sign-Up</a>
-          <a href="login.php">Login</a>
-        <!--  <a href="blogs.php">Blogs</a> -->
-          <!--<a href ="Admin.php">Admin-Login</a> -->
-        <!--  <a href ="userPage.php"> My-Profile</a> -->
-      </nav>
-  </header>
-
 <body>
-    <h1>Welcome To Khan&Aziz Blogs</h1>
 
+      <header>
+        <nav id="#ac-globalnav">
 
-
-
-
+            <a href="registration.php">Sign-Up</a>
+            <a href="login.php">Login</a>
+           <a href="blogs.php">View-Posts</a>
+             <a href ="logout.php">Logout</a>
+            <!--<a href ="Admin.php">Admin-Login</a> -->
+          <a href ="userPage.php"> My-Profile</a>
+        </nav>
+    </header>
+    <div>
+              <h1>Welcome</h1>
+              <img src="http://www.whatsupdoc-lemag.fr/userfiles/actumag/ThinkstockPhotos-521808958.jpg" >
+    </div>
     <div class="footer"
     <footer>
       <h2>Developers</h2>

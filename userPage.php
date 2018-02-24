@@ -27,7 +27,7 @@ if(!isset($_SESSION['id'])){
   </header>
 
 <body>
-    <h1>Welcome To Khan&Aziz Blogs</h1>
+    <h1>Welcome Back</h1>
 
 
 

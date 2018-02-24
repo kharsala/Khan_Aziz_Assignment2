@@ -2,37 +2,69 @@
 
      //this is the file for the database connector
      include_once('ConnectorDb.php');
-     //variables that hold regex for validation
-      $reg_name = "/^[a-zA-Z ]*$/";
-      $reg_email="/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/";
-      $reg_pass = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/";
 
-      //defining variables username and password
-      $user = $password = $confPassword = "";
-      $user_err = $password_err = $conf_pass_err = "";
-
-       $stmt = $mysqli -> prepare ("insert into users (UserName, EmailAddress, Password ) values (?,?,?) ");
-
-       $stmt ->bind_param("sss", $user, $email, $password );
-     //isset($_POST['submit'])
        if($_SERVER["REQUEST_METHOD"] == "POST")
        {
-         //data entered in the form on newUser.php page
-         if((string)preg_match($reg_name, $_POST['name']))
-           $user = strip_tags(trim($_POST['name'] ));
+            //striping the input data of the tags
+            $username = strip_tags($_POST['username']);
+            $email = strip_tags($_POST['email']);
+            if(strlen($_POST['password']) < 8)
+            $password = strip_tags($_POST['password']);
+            $cpassword = strip_tags($_POST['cpassword']);
 
-         if(preg_match($reg_email, $_POST['email']))
-           $email = strip_tags(trim( $_POST['email']));
+           //striping the slaches
+            $username =  stripslashes($username);
+            $email =stripslashes($email);
+            $password =  stripslashes($password);
+            $cpassword =  stripslashes($cpassword);
 
+            $username = mysqli_real_escape_string($mysqli, $username);
+           $email = mysqli_real_escape_string($mysqli, $email);
+          $password= mysqli_real_escape_string($mysqli, $password);
+          $cpassword= mysqli_real_escape_string($mysqli, $cpassword);
 
-           $password = trim($_POST['password']);
+            $password= md5($password);
+            $cpassword= md5($cpassword);
 
-           $stmt->execute();
+            //query to insert into the table
+            $insert = "INSERT INTO users (UserName, EmailAddress, Password) values (?, ?, ?)";
+            //query to select from the users  to check if there is a user
+            $selectUser = "SELECT * FROM users WHERE UserName ='$username' ";
+            //query to select from the users  to check if there is a email tha exists
+            $selectEmail = "SELECT * FROM users WHERE EmailAddress ='$email' ";
+
+            //now actually fetch the query for the user
+            $queryUser = mysqli_query($mysqli, $selectUser);
+            //now actually fetch the query for the user
+           $queryEmail = mysqli_query($mysqli, $selectEmail);
+           //fetching query
+           $rowUser = mysqli_fetch_array($queryUser);
+           $rowEmail = mysqli_fetch_array($queryUser);
+
+            // if the query is tru then we know that there is already a user with that name
+            if(mysqli_num_rows($rowUser)){
+                  echo "User Exists";
+                  return;
+            }
+            //check if email exists
+            if(mysqli_num_rows($rowEmail)){
+               echo "Email Exists";
+               return;
+            }
+            if($password == $cpassword){
+              $stmt = $mysqli -> prepare ($insert);
+
+              $stmt ->bind_param("sss",   $username , $email, $cpassword );
+              $stmt->execute();
            $stmt->close();
-          echo"New Record created Sucessfully";
-        header("location: index.php");
+          header("location: index.php");
 
-         }
+            }else{
+              echo "Password Mismatch!!";
+              return;
+            }
+
+       }
  ?>
 <html>
 
@@ -51,7 +83,7 @@
                     <nav id="#ac-globalnav">
 
                           <a href="index.php">Home</a>
-                        <a href="registration.php">Sign-up</a>
+
 
                     </nav>
                   </header>
@@ -63,11 +95,13 @@
      <form id="userForm" action="registration.php" method="post">
 
           UserName:<br>
-          <input type="text" name="name" pattern="[a-zA-Z]{1,15}" title ="UserName should only contain letters e.g KHAN or khan" required/><br>
+            <input type="text" name="username" required/><br>
           E-mail:<br>
-          <input type="text" name="email" pattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Invalid Email!!!" required/><br>
+              <input type="text" name="email" pattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Invalid Email!!!"  required/><br>
           Password:<br>
           <input type="password" name="password"  required/><br>
+          Confirm-Password:<br>
+          <input type="password" name="cpassword"  required/><br>
           <input type="submit" name="submit" value="register" />
           <input type="reset" value="reset" /><br>
 

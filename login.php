@@ -12,7 +12,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   $username = mysqli_real_escape_string($mysqli, $username);
   $password= mysqli_real_escape_string($mysqli, $password);
 
-  //$password= md5($password);
+  $password= md5($password);
 
   $dbQuery = "SELECT * FROM users WHERE UserName = '$username' LIMIT 1";
   $result = mysqli_query($mysqli, $dbQuery);
@@ -20,13 +20,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
   $Id = $row['Id'];
   $db_password = $row['Password'];
-
+//if password matches create a session nane and id for that user
   if($password == $db_password){
     $_SESSION['username'] = $username;
     $_SESSION['id'] = $Id;
+    //redirect the iuser to the users page
     header("Location: userPage.php");
 
   }else{
+    //diplay error
     echo "Invalid Username or Password";
   }
 
@@ -42,11 +44,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 </head>
 <body>
+
+      <header>
+        <nav id="#ac-globalnav">
+
+            <a href="index.php">Home</a>
+
+        </nav>
+    </header>
     <div div class="main-body-Form">
         <h1>Login</h1>
       <form action="login.php" method="post">
         UserName:<br>
         <input type="text" name="username" required/><br>
+        Password:<br>
         <input type="password" name="password" required/><br>
         <input type="submit" name="submit" value="Login"/>
         <input type="reset" value="Clear"/>

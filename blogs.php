@@ -13,9 +13,8 @@
 
     <header>
       <nav id="#ac-globalnav">
-        
+
           <a href="index.php">Home</a>
-          <a href="registration.php">Sign-Up</a>
           <a href="login.php">Login</a>
 
           <!--<a href ="Admin.php">Admin-Login</a> -->
