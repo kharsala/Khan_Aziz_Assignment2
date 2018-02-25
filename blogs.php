@@ -30,6 +30,7 @@
   <?php
     require_once("nbbc/nbbc.php");
     //creating a bbcode object
+
     $bbcode = new BBCode;
     $selectQ = "SELECT  * from posts ORDER BY Id DESC";
     $result = $mysqli->query($selectQ);
@@ -44,40 +45,29 @@
         $title = $row['title'];
         $date = $row['date'];
 
-        $admin = "<div><a class ='admin' herf = 'deletePost.php?pid=$id'>Delete</a> &nbsp <a herf = 'deletePost.php?pid=$id'>Edit</a></div>";
         //this will format everything removing tags
         $output = $bbcode ->Parse($content);
-       $posts  =
-         "
-         <div id= 'blog_pst'>
-         <article>
-        <h2><h1><a herf = 'deletePost.php?pid=$id'>$title</a></h1>
-         <h3>$date</h3 >
-         <p>$output</p>
-        </article>
-       </div>
-       ";
-       echo $posts;
-       echo $admin;
-      }
+      echo '
 
+        <div class="row">
+          <div class="leftcolumn">
+            <div class="card">
+              <h2>'.$title.'</h2>
+                <h5>'.$date.'</h5>
+                  <div class="fakeimg" style="height:200px;">Image</div>
+                    <p>'.$output.'</p>
+          ';
+      }
       //echo $admin;
     }else{
       echo "Not Posts Yet";
     }
 
+
   ?>
 
-    <div class="footer"
-    <footer>
-      <h2>Developers</h2>
-        <ul>
-          <li class="names">Arsalan Khan</li>
-          <li class="names">Hasib Aziz</li>
-        </ul>
-          <h2 id="cpright">Copyrights Khan and Aziz...2018</h2>
-
-    </footer>
+  <div class="footer">
+      <h2 id="cpright">Copyrights Khan and Aziz...2018</h2>
   </div>
 </body>
 
