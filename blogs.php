@@ -54,8 +54,14 @@
             <div class="card">
               <h2>'.$title.'</h2>
                 <h5>'.$date.'</h5>
-                  <div class="fakeimg" style="height:200px;">Image</div>
+                <!--  <div class="fakeimg" style="height:200px;">Image</div> -->
                     <p>'.$output.'</p>
+                    <form action="deleteBlog.php?pid='.$id. ' method = "POST" >
+                        
+                           <input type = "submit" value="Delete">
+                       </form>
+
+          </div>
           ';
       }
       //echo $admin;

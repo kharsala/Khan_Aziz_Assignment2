@@ -1,6 +1,6 @@
 <?php
   session_start();
-  include_once("ConnectorDb");
+  include_once("ConnectorDb.php");
 
   ///checking to see if the user is loged in and the blog is his inorder to delete it
   //else just redirect the user to the userpage pr main page
@@ -10,11 +10,11 @@
         header("Location: login.php");
   }
   if(!isset($_SESSION['id'])){
-      header("Location: userPage.php");
+      header("Location: blogs.php");
   }
-  else if (isset($_SESSION['id'])){
+  else{
     //get the process if from the url
-    $psid = $_GET['psid'];
+    $psid = $_GET['pid'];
     $delete = "DELETE FROM posts Where Id = $psid";
      mysqli_query($mysqli, $delete);
      header("Location: blogs.php");

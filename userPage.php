@@ -30,9 +30,9 @@ if(!isset($_SESSION['id'])){
   </header>
 
 <body>
-    <h1>Welcome Back</h1>
+    <h1>Hi <?php echo $_SESSION['username'] ?> </h1>
 
-
+   
 
 
 
