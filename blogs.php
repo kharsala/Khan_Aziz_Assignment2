@@ -15,7 +15,7 @@
       <nav id="#ac-globalnav">
 
           <a href="index.php">Home</a>
-         
+
 
           <!--<a href ="Admin.php">Admin-Login</a> -->
         <!--  <a href ="ProfileMgmt.php"> My-Profile</a> -->
@@ -30,34 +30,40 @@
     //creating a bbcode object
     $bbcode = new BBCode;
     $selectQ = "SELECT  * from posts ORDER BY Id DESC";
-    $result =  mysqli_query($mysqli, $selectQ);
-
+    $result = $mysqli->query($selectQ);
     //$posts = "";
     if($result->num_rows > 0){
 
-      echo "<table id='users-table'>";
+
       while($row = mysqli_fetch_assoc($result)){
 
         $id =  $row['Id'];
-        $title = $row['title'];
         $content = $row['content'];
+        $title = $row['title'];
         $date = $row['date'];
 
         $admin = "<div><a herf = 'deletePost.php?pid=$id'>Delete</a> &nbsp <a herf = 'deletePost.php?pid=$id'>Delete</a></div>";
         //this will format everything removing tags
         $output = $bbcode ->Parse($content);
-       $posts  =  "<div id= 'blog_pst'><h1><a class='title' herf='see_post.php?pid=$id '>$title</a></h1><h3>$date</h3><p>$output</p>$admin</div>";
+       $posts  =
+         "
+         <div id= 'blog_pst'>
+         <article>
+        <h2><div><a herf = 'deletePost.php?pid=$id'>$title</a></h2>
+         <h3>$date</h3 >
+         <p>$output</p>
+        </article>
+       </div>
+       ";
+         echo $posts;
       }
-      echo $posts;
-      echo $admin;
+
+      //echo $admin;
     }else{
       echo "Not Posts Yet";
     }
 
   ?>
-
-
-
 
     <div class="footer"
     <footer>
