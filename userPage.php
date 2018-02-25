@@ -17,10 +17,12 @@ if(!isset($_SESSION['id'])){
 </head>
 
     <header>
-      <nav id="#ac-globalnav">
+      <nav id="globalnav">
 
+            <a href="index.php">Home</a>
           <a href="logout.php">logout</a>
-          <a href="blogs.php">View-Blogs</a>
+          <a class ="active" href ="userPage.php"> My-Profile</a>
+            <a href="blogs.php">View-Posts</a>
           <a href="post.php">Create-Post</a>
           <!--<a href ="Admin.php">Admin-Login</a> -->
         <!--  <a href ="userPage.php"> My-Profile</a> -->

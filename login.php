@@ -46,9 +46,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <body>
 
       <header>
-        <nav id="#ac-globalnav">
+        <nav id="globalnav">
 
-            <a href="index.php">Home</a>
+          <a href="index.php">Home</a>
+            <a class="active" href="login.php">Login</a>
+            <a  href="registration.php">Sign-Up</a>
+
 
         </nav>
     </header>

@@ -1,5 +1,11 @@
 <?php
   session_start();
+  if(!isset($_SESSION['id'])){
+
+    header("Location: login.php");
+
+
+  }
  include_once('ConnectorDb.php');
 
 
@@ -22,7 +28,7 @@
           $stmt->execute();
        $stmt->close();
        echo"Blog Sucessfuly Posted";
-      header("location: index.php");
+      header("location: userPage.php");
 
 
 
@@ -38,11 +44,27 @@
   </head>
  <body>
 
-   <div>
+   <div class="navigation">
 
-     <header><h1>Create-Blog</h1></header>
+               <header>
+                 <nav id="globalnav">
 
+                       <a href="index.php">Home</a>
+                     <a href="logout.php">logout</a>
+                     <a  href ="userPage.php"> My-Profile</a>
+                     <a href="blogs.php">View-Posts</a>
+                     <a class ="active" href="post.php">Create-Post</a>
+                     <!--<a href ="Admin.php">Admin-Login</a> -->
+                   <!--  <a href ="userPage.php"> My-Profile</a> -->
+                 </nav>
+               </header>
    </div>
+
+
+       <h1>Create-Blog</h1>
+
+
+
 
    <div class="main-body-Form">
       <form action="post.php" method="post" enctype="multipart/form-data" >

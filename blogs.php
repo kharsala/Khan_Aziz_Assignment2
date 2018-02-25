@@ -12,13 +12,15 @@
 </head>
 
     <header>
-      <nav id="#ac-globalnav">
+      <nav id="globalnav">
 
-          <a href="index.php">Home</a>
-
-
+            <a href="index.php">Home</a>
+          <a href="logout.php">logout</a>
+          <a  href ="userPage.php"> My-Profile</a>
+          <a class="active" href="blogs.php">View-Posts</a>
+          <a  href="post.php">Create-Post</a>
           <!--<a href ="Admin.php">Admin-Login</a> -->
-        <!--  <a href ="ProfileMgmt.php"> My-Profile</a> -->
+        <!--  <a href ="userPage.php"> My-Profile</a> -->
       </nav>
   </header>
 
@@ -42,20 +44,21 @@
         $title = $row['title'];
         $date = $row['date'];
 
-        $admin = "<div><a herf = 'deletePost.php?pid=$id'>Delete</a> &nbsp <a herf = 'deletePost.php?pid=$id'>Delete</a></div>";
+        $admin = "<div><a class ='admin' herf = 'deletePost.php?pid=$id'>Delete</a> &nbsp <a herf = 'deletePost.php?pid=$id'>Edit</a></div>";
         //this will format everything removing tags
         $output = $bbcode ->Parse($content);
        $posts  =
          "
          <div id= 'blog_pst'>
          <article>
-        <h2><div><a herf = 'deletePost.php?pid=$id'>$title</a></h2>
+        <h2><h1><a herf = 'deletePost.php?pid=$id'>$title</a></h1>
          <h3>$date</h3 >
          <p>$output</p>
         </article>
        </div>
        ";
-         echo $posts;
+       echo $posts;
+       echo $admin;
       }
 
       //echo $admin;

@@ -79,9 +79,12 @@
 
                   <header>
 
-                    <nav id="#ac-globalnav">
+                    <nav id="globalnav">
 
-                          <a href="index.php">Home</a>
+                      <a href="index.php">Home</a>
+                        <a href="login.php">Login</a>
+                        <a  class="active"  href="registration.php">Sign-Up</a>
+
 
 
                     </nav>

@@ -9,14 +9,14 @@
 <body>
 
       <header>
-        <nav id="#ac-globalnav">
+        <nav id="globalnav">
 
-            <a href="registration.php">Sign-Up</a>
-            <a href="login.php">Login</a>
-           <a href="blogs.php">View-Posts</a>
-             <a href ="logout.php">Logout</a>
-            <!--<a href ="Admin.php">Admin-Login</a> -->
-          <a href ="userPage.php"> My-Profile</a>
+
+               <a class = "active" href="index.php">Home</a>
+               <a href="login.php">Login</a>
+               <a href="registration.php">Sign-Up</a>
+               <a href="blogs.php">View-Posts</a>
+               <a href ="userPage.php"> My-Profile</a>
         </nav>
     </header>
     <div>
