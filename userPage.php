@@ -33,30 +33,7 @@ if(!isset($_SESSION['id'])){
 
 <body>
     <h1>Welcome <?php echo $_SESSION['username'] ?> </h1>
-    <?php
-    if (isset($_POST['submit'])){
-      $pid =$_SESSION['id'];
-      $pImg= "SELECT * FROM Profileimage where userId= $pid ";
-      $resultImg = $mysqli->query($pImg);
-      //check a statis
-      if($resultImg ->num_rows > 0){
-      while($rowImg = $resultImg-> fetch_assoc()){
-         echo"<div>";
-           if($rowImg["status"] == 0){
-                 echo'<img src="http://www.whatsupdoc-lemag.fr/userfiles/actumag/ThinkstockPhotos-521808958.jpg" >';
-           }else{
-                 echo"<img  src='default.jpg'> ";
-           }
-
-
-      }
-    }
-
-    }
-
-
-
-    ?>
+    
 
     <form action="profileMng.php" method = "POST" >
 

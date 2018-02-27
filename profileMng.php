@@ -11,9 +11,9 @@
     while($rowImg = $resultImg-> fetch_assoc()){
        echo"<div>";
          if($rowImg["status"] == 0){
-               echo"<img  src='image/default' .$pid. '.jpg'> ";
+                  echo'<img src="image/default.jpg" alt="Avatar" class="avatar"> ';
          }else{
-             echo"<img  src='image/default.jpg'> ";
+             echo'<img src="image/default.jpg" alt="Avatar" class="avatar"> ';
          }
 
 
@@ -30,6 +30,18 @@
   </head>
 
   <body>
+    <header>
+      <nav id="globalnav">
+
+            <a href="index.php">Home</a>
+          <a href="logout.php">logout</a>
+          <a  class="active" href ="userPage.php"> My-Profile</a>
+          <a  href="blogs.php">View-Posts</a>
+          <a  href="post.php">Create-Post</a>
+          <!--<a href ="Admin.php">Admin-Login</a> -->
+        <!--  <a href ="userPage.php"> My-Profile</a> -->
+      </nav>
+    </header>
     <div>
       <?php
 
@@ -43,6 +55,21 @@
         $result = $mysqli->query($Query);
         if($result->num_rows > 0){
 
+
+          $pImg= "SELECT * FROM Profileimage where userId= $pid ";
+          $resultImg = $mysqli->query($pImg);
+          //check a statis
+          while($rowImg = $resultImg-> fetch_assoc()){
+
+               if($rowImg['status'] == 0){
+
+               }else{
+                    echo'<img src="image/default.jpg" alt="Avatar" class="avatar"> ';
+               }
+
+
+          }
+echo'<img src="image/default.jpg" alt="Avatar" class="avatar"> ';
         echo "<table id='users-table'>";
               echo "<tr>";
                     echo "<th>id</th>";

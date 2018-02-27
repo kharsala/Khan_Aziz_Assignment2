@@ -44,6 +44,7 @@
         $content = $row['content'];
         $title = $row['title'];
         $date = $row['date'];
+        $userName = $row['UserName'];
 
         //this will format everything removing tags
         $output = $bbcode ->Parse($content);
@@ -53,12 +54,14 @@
           <div class="leftcolumn">
             <div class="card">
               <h2>'.$title.'</h2>
+              <h4>'.$userName.'</h4>
                 <h5>'.$date.'</h5>
                 <!--  <div class="fakeimg" style="height:200px;">Image</div> -->
                     <p>'.$output.'</p>
 
                     <form action="deleteBlog.php" method = "post">
                     <input type = "hidden" name="id" value="'.$id.'">
+                    <input type = "hidden" name="username" value= "'.$userName.'" >
                       <input type = "submit" value="Delete">
                     </form>
 

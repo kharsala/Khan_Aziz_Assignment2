@@ -6,6 +6,9 @@
 
 
   }
+  if(isset($_SESSION['username'])){
+    $pstUser = $_SESSION['username'];
+  }
  include_once('ConnectorDb.php');
 
 
@@ -23,8 +26,8 @@
         $content=  mysqli_real_escape_string($mysqli, $content);
 
 
-          $stmt = $mysqli -> prepare ("INSERT into posts (title, content, date ) values (?,?,?) ");
-          $stmt ->bind_param("sss",     $title , $content, $date );
+          $stmt = $mysqli -> prepare ("INSERT into posts (title, content, date, UserName ) values (?,?,?,?) ");
+          $stmt ->bind_param("ssss",     $title , $content, $date, $pstUser );
           $stmt->execute();
        $stmt->close();
        echo"Blog Sucessfuly Posted";

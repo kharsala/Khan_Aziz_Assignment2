@@ -7,7 +7,7 @@ body{
 
  min-height: 100%;
  font-family: "Helvetica Neue", Arial, sans-serif;
- 
+
 }
 a{
 
@@ -241,4 +241,10 @@ img{
     content: "";
     display: table;
     clear: both;
+}
+.avatar {
+    vertical-align: middle;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
 }
