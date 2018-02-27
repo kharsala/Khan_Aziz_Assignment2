@@ -34,7 +34,7 @@
     $bbcode = new BBCode;
     $selectQ = "SELECT  * from posts ORDER BY Id DESC";
     $result = $mysqli->query($selectQ);
-    //$posts = "";
+
     if($result->num_rows > 0){
 
 
@@ -56,10 +56,11 @@
                 <h5>'.$date.'</h5>
                 <!--  <div class="fakeimg" style="height:200px;">Image</div> -->
                     <p>'.$output.'</p>
-                    <form action="deleteBlog.php?pid='.$id. ' method = "POST" >
-                        
-                           <input type = "submit" value="Delete">
-                       </form>
+
+                    <form action="deleteBlog.php" method = "post">
+                    <input type = "hidden" name="id" value="'.$id.'">
+                      <input type = "submit" value="Delete">
+                    </form>
 
           </div>
           ';

@@ -10,12 +10,12 @@
         header("Location: login.php");
   }
   if(!isset($_SESSION['id'])){
-      header("Location: blogs.php");
+      header("Location: login.php");
   }
   else{
     //get the process if from the url
-    $psid = $_GET['pid'];
-    $delete = "DELETE FROM posts Where Id = $psid";
+    $postUser= $_SESSION['username'];
+    $delete = "DELETE FROM posts Where UserName = $postUser";
      mysqli_query($mysqli, $delete);
      header("Location: blogs.php");
 

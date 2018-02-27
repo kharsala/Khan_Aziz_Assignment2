@@ -9,6 +9,8 @@ if(!isset($_SESSION['id'])){
 
 ?>
 
+
+
 <html>
 
 <head>
@@ -22,7 +24,7 @@ if(!isset($_SESSION['id'])){
             <a href="index.php">Home</a>
           <a href="logout.php">logout</a>
           <a class ="active" href ="userPage.php"> My-Profile</a>
-            <a href="blogs.php">View-Posts</a>
+            <a href="blogs.php">ViewMyPosts</a>
           <a href="post.php">Create-Post</a>
           <!--<a href ="Admin.php">Admin-Login</a> -->
         <!--  <a href ="userPage.php"> My-Profile</a> -->
@@ -30,9 +32,36 @@ if(!isset($_SESSION['id'])){
   </header>
 
 <body>
-    <h1>Hi <?php echo $_SESSION['username'] ?> </h1>
+    <h1>Welcome <?php echo $_SESSION['username'] ?> </h1>
+    <?php
+    if (isset($_POST['submit'])){
+      $pid =$_SESSION['id'];
+      $pImg= "SELECT * FROM Profileimage where userId= $pid ";
+      $resultImg = $mysqli->query($pImg);
+      //check a statis
+      if($resultImg ->num_rows > 0){
+      while($rowImg = $resultImg-> fetch_assoc()){
+         echo"<div>";
+           if($rowImg["status"] == 0){
+                 echo'<img src="http://www.whatsupdoc-lemag.fr/userfiles/actumag/ThinkstockPhotos-521808958.jpg" >';
+           }else{
+                 echo"<img  src='default.jpg'> ";
+           }
 
-   
+
+      }
+    }
+
+    }
+
+
+
+    ?>
+
+    <form action="profileMng.php" method = "POST" >
+
+                             <input type = "submit" value="ManageProfile">
+  </form>
 
 
 

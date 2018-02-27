@@ -39,6 +39,11 @@
                               echo "<td>" . $row['Id'] . "</td>";
                               echo "<td>" . $row['UserName'] . "</td>";
                               echo "<td>" . $row['EmailAddress'] . "</td>";
+                              echo'<td>
+                                <form action="userDetails.php" method = "POST" >
+                                  <input type = "submit" value="SELECT">
+                                </form>
+                              </td>';
                           echo "</tr>";
 
 
