@@ -7,7 +7,7 @@ body{
 
  min-height: 100%;
  font-family: "Helvetica Neue", Arial, sans-serif;
- 
+
 }
 a{
 
@@ -241,4 +241,20 @@ img{
     content: "";
     display: table;
     clear: both;
+}
+
+.edit_btn{
+  text-decoration: none;
+  padding: 3px 4px;
+  background: #2E8B57;
+  color: white;
+  border-radius: 5px;
+}
+
+.delete_btn{
+  text-decoration: none;
+  padding: 3px 4px;
+  background: #800000;
+  color: white;
+  border-radius: 5px;
 }
