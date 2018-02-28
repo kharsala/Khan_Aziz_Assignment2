@@ -3,21 +3,18 @@
   include_once("ConnectorDb.php");
 ?>
 <?php
-  if (isset($_POST['submit'])){
-    $pid =$_SESSION['id'];
-    $pImg= "SELECT * FROM Profileimage where userId= $pid ";
-    $resultImg = $mysqli->query($pImg);
+  if (isset($_POST['file'])){
+    //$pid =$_SESSION['id'];
+    //$pImg= "SELECT * FROM Profileimage where userId= $pid ";
+    //$resultImg = $mysqli->query($pImg);
     //check a statis
-    while($rowImg = $resultImg-> fetch_assoc()){
-       echo"<div>";
-         if($rowImg["status"] == 0){
-                  echo'<img src="image/default.jpg" alt="Avatar" class="avatar"> ';
-         }else{
-             echo'<img src="image/default.jpg" alt="Avatar" class="avatar"> ';
-         }
+  $target_dir = "image/";
+  $target_file = $target_dir . basename($_FILES["file"]["name"]);
+    move_uploaded_file($_FILES["file"]["tmp_name"],  "image/". $_FILES['file']['name']);
+    $query = "UPDATE users SET profileImg = ' ". $_FILES['file']['name']."'  where UserName = '".$_SESSION['username']." '  " ;
+    $mysqli->query($query);
 
 
-    }
 
   }
 
@@ -51,25 +48,11 @@
       if(isset($_SESSION['id']))
       {
         $pid = $_SESSION['id'];
-        $Query = "SELECT Id, UserName, EmailAddress from users where Id= $pid ";
+        $Query = "SELECT Id, UserName, EmailAddress, profileImg from users where Id= $pid ";
         $result = $mysqli->query($Query);
+
         if($result->num_rows > 0){
-
-
-          $pImg= "SELECT * FROM Profileimage where userId= $pid ";
-          $resultImg = $mysqli->query($pImg);
           //check a statis
-          while($rowImg = $resultImg-> fetch_assoc()){
-
-               if($rowImg['status'] == 0){
-
-               }else{
-                    echo'<img src="image/default.jpg" alt="Avatar" class="avatar"> ';
-               }
-
-
-          }
-echo'<img src="image/default.jpg" alt="Avatar" class="avatar"> ';
         echo "<table id='users-table'>";
               echo "<tr>";
                     echo "<th>id</th>";
@@ -78,10 +61,18 @@ echo'<img src="image/default.jpg" alt="Avatar" class="avatar"> ';
                     echo "<th>Edit-User</th>";
               echo "</tr>";
               while($row = $result->fetch_assoc()){
+                  $profileImg = $row['profileImg'];
+                if(($row['profileImg']) == null ){
+
+                echo'<img src="image/default.jpg" alt="Avatar" class="avatar"> ';
+              }
+              else{
+
+              }
                 echo'
-                  <form action="userPage.php" method = "POST" >
+                  <form action="profileMng.php" method = "POST" enctype="multipart/form-data" >
                    <input type="file" name="file">
-                    <input type = "submit" value="upload-Image">
+                    <input type ="submit" name="file" value="upload-Image">
                   </form>
                 ';
                       echo "<tr>";
@@ -106,17 +97,6 @@ echo'<img src="image/default.jpg" alt="Avatar" class="avatar"> ';
         header("Location: userPage.php");
       }
 
-
-
-
-        echo'
-
-
-
-
-
-
-        ';
       ?>
     </div>
 
