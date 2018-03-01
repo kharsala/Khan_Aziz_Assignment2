@@ -14,7 +14,7 @@ include_once('ConnectorDb.php');
     $username = $record['username'];
     $email = $record['email'];
     $password = $record['password'];
-    $id = $recprd['id'];
+    $id = $record['id'];
   }
 
 
@@ -57,9 +57,6 @@ include_once('ConnectorDb.php');
               <td>
                 <a class="delete_btn href="AdminOptions.php?delete=<?php echo $row['id']; ?>">Delete</a>
               </td>
-              <td>
-                <a href="#">Approve</a>
-              </td>
             </tr>
         <?php  } ?>
 
@@ -83,7 +80,7 @@ include_once('ConnectorDb.php');
         </div>
         <div class="input-group">
           <?php if ($edit_state == false): ?>
-            <button type="submit" name="create" class="btn">Create User</button>
+            <button type="submit" name="save" class="btn">Save</button>
           <?php else: ?>
             <button type="submit" name="edit" class="btn">Edit</button>
             <?php endif; ?>

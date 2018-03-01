@@ -2,17 +2,24 @@
 session_start();
  include_once ("ConnectorDb.php");
  if(!isset($_SESSION['id'])){
-      header("Location: login.php");
+      header("Location: Admin.php");
  }
+  $id = "";
+  $username = "";
+  $email = "";
+  $password = "";
+  $edit_state = false;
 
- $edit_state = false;
+ //if save option is selected
+   if(isset($_POST['save'])){
+     $username = $_POST['username'];
+     $email = $_POST['email'];
+     $password = $_POST['password'];
 
- //if create option is selected
-   if(isset($_POST['create'])){
-     $username = ($_POST['username']);
-     $email = ($_POST['email']);
-     $password = ($_POST['password']);
-     header('location: Admin.p');
+     $query = "INSERT INTO users (username, email, password) VALUES ('$username','$email','$password')";
+     mysqli_query($database, $query);
+     $_SESSION['message'] = "Information Saved!";
+     header('location: Admin.php');
    }
 
 //if edit option is selected
@@ -22,15 +29,15 @@ session_start();
     $email = mysqli_real_escape_string($_POST['email']);
     $password = mysqli_real_escape_string($_POST['password']);
 
-    mysqli_query($mysqli, "UPDATE users SET username='$username', email='$email', password='$password' WHERE id=$id");
-    $_SESSION['message'] = "Information Saved!";
+    mysqli_query($database, "UPDATE users SET username='$username', email='$email', password='$password' WHERE id=$id");
+    $_SESSION['message'] = "Information Edited!";
     header('location: Admin.php');
   }
 
 //if delete option is selected
   if(isset($_GET['delete'])){
     $id = $_GET['delete'];
-    mysqli_query($mysqli, "DELETE FROM users WHERE id=$id");
+    mysqli_query($database, "DELETE FROM users WHERE id=$id");
     $_SESSION['message'] = "Information Deleted!";
     header('location: Admin.php');
   }
