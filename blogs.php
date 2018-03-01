@@ -8,6 +8,7 @@
 
 <head>
   <link href="app.css" rel="stylesheet" type="text/css" >
+  <meta charset="UTF-8">
   <title>Welcome_Blog</title>
 </head>
 

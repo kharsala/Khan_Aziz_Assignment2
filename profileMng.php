@@ -10,6 +10,7 @@
 <html>
   <head>
     <title>Mange-Profile</title>
+    <meta charset="UTF-8">
   <link href="app.css" rel="stylesheet" type="text/css" >
   </head>
 

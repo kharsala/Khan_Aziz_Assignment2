@@ -38,7 +38,7 @@ if(isset($_POST['submit']))
 <html>
   <head>
     <link type="text/css" href="app.css" rel ="stylesheet">
-
+    <meta charset="UTF-8">
   </head>
   <body>
 

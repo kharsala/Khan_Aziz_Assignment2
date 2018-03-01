@@ -89,6 +89,7 @@
 <html>
 
     <head>
+      <meta charset="UTF-8">
       <title>Register</title>
       <link href="app.css" rel="stylesheet" type="text/css" >
       <meta character="UTF-8">

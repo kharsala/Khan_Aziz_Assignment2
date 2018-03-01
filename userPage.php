@@ -14,6 +14,7 @@ if(!isset($_SESSION['id'])){
 <html>
 
 <head>
+  <meta charset="UTF-8">
   <link href="app.css" rel="stylesheet" type="text/css" >
   <title>Welcome_Blog</title>
 </head>
