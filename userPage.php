@@ -24,8 +24,8 @@ if(!isset($_SESSION['id'])){
             <a href="index.php">Home</a>
           <a href="logout.php">logout</a>
           <a class ="active" href ="userPage.php"> My-Profile</a>
-            <a href="blogs.php">ViewMyPosts</a>
-          <a href="post.php">Create-Post</a>
+            <a href="blogs.php">GlobalPosts</a>
+          <a href="post.php">Posts</a>
           <!--<a href ="Admin.php">Admin-Login</a> -->
         <!--  <a href ="userPage.php"> My-Profile</a> -->
       </nav>
@@ -33,7 +33,7 @@ if(!isset($_SESSION['id'])){
 
 <body>
     <h1>Welcome <?php echo $_SESSION['username'] ?> </h1>
-    
+
 
     <form action="profileMng.php" method = "POST" >
 

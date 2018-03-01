@@ -31,7 +31,7 @@
           $stmt->execute();
        $stmt->close();
        echo"Blog Sucessfuly Posted";
-      header("location: userPage.php");
+      header("location: post.php");
 
 
 
@@ -55,8 +55,8 @@
                        <a href="index.php">Home</a>
                      <a href="logout.php">logout</a>
                      <a  href ="userPage.php"> My-Profile</a>
-                     <a href="blogs.php">View-Posts</a>
-                     <a class ="active" href="post.php">Create-Post</a>
+                     <a href="blogs.php">GlobalPosts</a>
+                     <a class ="active" href="post.php">Post</a>
                      <!--<a href ="Admin.php">Admin-Login</a> -->
                    <!--  <a href ="userPage.php"> My-Profile</a> -->
                  </nav>
@@ -77,6 +77,58 @@
         <input type="reset" value = "Erase-All">
 
       </form>
+      <h2>Your-Blogs</h2>
+
+      <?php
+        require_once("nbbc/nbbc.php");
+        //creating a bbcode object
+        //name of the user
+       $user = $_SESSION['username'];
+        $bbcode = new BBCode;
+        $selectQ = "SELECT  * from posts WHERE UserName ='$user'  ORDER BY Id DESC";
+        $result = $mysqli->query($selectQ);
+
+        if($result->num_rows > 0){
+
+
+          while($row = mysqli_fetch_assoc($result)){
+
+            $id =  $row['Id'];
+            $content = $row['content'];
+            $title = $row['title'];
+            $date = $row['date'];
+            $userName = $row['UserName'];
+
+            //this will format everything removing tags
+            $output = $bbcode ->Parse($content);
+          echo '
+
+            <div class="row">
+              <div class="leftcolumn">
+                <div class="card">
+                  <h2>'.$title.'</h2>
+                  <h4>'.$userName.'</h4>
+                    <h5>'.$date.'</h5>
+                    <!--  <div class="fakeimg" style="height:200px;">Image</div> -->
+                        <p>'.$output.'</p>
+
+                        <form action="deleteBlog.php" method = "post">
+                        <input type = "hidden" name="id" value="'.$id.'">
+                        <input type = "hidden" name="username" value= "'.$userName.'" >
+                          <input type = "submit" value="Delete">
+                        </form>
+
+              </div>
+              ';
+          }
+          //echo $admin;
+        }else{
+          echo "Not Posts Yet";
+        }
+
+
+      ?>
+
 
    </div>
    <div>

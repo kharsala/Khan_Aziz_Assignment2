@@ -1,7 +1,9 @@
 <?php
 session_start();
-
-if(!isset($_SESSION['id'])){
+include_once("ConnectorDb.php");
+//current user id
+$id = $_SESSION['id'];
+if(!isset($id)){
   header("Location: loging.php");
 }
 if(isset($_POST['upload'])){
@@ -27,11 +29,14 @@ if(isset($_POST['upload'])){
         if($fileSize < 500000){
             //now we can upload the file after all the checks
             //creating a unique id for each image
-            $filenewName = uniqid(' ', true). ".".$fileActualExt;
+            $filenewName = "default".$id.".".$fileActualExt;
             //add this to root folder of the projects
-            $fileDestination = 'image/ ' .$filenewName;
+            $fileDestination = 'images/ ' .$filenewName;
             //actual functiont to move the file to actual location
             move_uploaded_file($fileTempName, $fileDestination);
+            //update the status of the upload
+            $sql = "UPDATE pimg SET status= 0 WHERE userId ='$id' ";
+            $result = $mysqli->query($sql);
             header("Location: profileMng.php?uploadsucess");
 
         }else{

@@ -27,41 +27,62 @@
 
             //query to insert into the table
             $insert = "INSERT INTO users (UserName, EmailAddress, Password) values (?, ?, ?)";
+
             //query to select from the users  to check if there is a user
-            $selectUser = "SELECT * FROM users WHERE UserName ='$username' ";
+          //  $selectUser = "SELECT * FROM users WHERE UserName ='$username' ";
             //query to select from the users  to check if there is a email tha exists
-            $selectEmail = "SELECT * FROM users WHERE EmailAddress ='$email' ";
+          //  $selectEmail = "SELECT * FROM users WHERE EmailAddress ='$email' ";
 
             //now actually fetch the query for the user
-            $queryUser = mysqli_query($mysqli, $selectUser);
+            //$queryUser = mysqli_query($mysqli, $selectUser);
             //now actually fetch the query for the user
-           $queryEmail = mysqli_query($mysqli, $selectEmail);
+        //   $queryEmail = mysqli_query($mysqli, $selectEmail);
            //fetching query
-           $rowUser = mysqli_fetch_array($queryUser);
-           $rowEmail = mysqli_fetch_array($queryUser);
+
+           //$rowEmail = mysqli_fetch_array($queryUser);
 
             // if the query is tru then we know that there is already a user with that name
-            if(mysqli_num_rows($rowUser)){
-                  echo "User Exists";
-                  return;
-            }
+            //if(mysqli_num_rows($rowUser)){
+
+                //  echo "User Exists";
+                //  return;
+          //  }
             //check if email exists
-            if(mysqli_num_rows($rowEmail)){
-               echo "Email Exists";
-               return;
-            }
+          //  if(mysqli_num_rows($rowEmail)){
+            //   echo "Email Exists";
+          //  //   return;
+            //}
             if($password == $cpassword){
               $stmt = $mysqli -> prepare ($insert);
 
               $stmt ->bind_param("sss",   $username , $email, $cpassword );
               $stmt->execute();
-           $stmt->close();
-          header("location: index.php");
+              $stmt->close();
 
             }else{
               echo "Password Mismatch!!";
               return;
             }
+            $Select = "SELECT * FROM users WHERE UserName = '$username' LIMIT 1";
+              $result2 = mysqli_query($mysqli, $Select);
+            if((mysqli_num_rows($result2) > 0)){
+              while($row = $result2->fetch_assoc()){
+                $userId = $row['Id'];
+              $status = 1;
+              //  $pInsert = "INSERT INTO pimg (userId, status)  VALUES ('$userId', 1) ";
+                $stmt2= $mysqli -> prepare ( "INSERT INTO pimg (userId, status)  VALUES (?, ?) ");
+                $stmt2->bind_param("ii",   $userId, $status);
+                $stmt2->execute();
+                $stmt2->close();
+
+
+              }
+
+
+
+                  header("location: index.php");
+            }
+
 
        }
  ?>

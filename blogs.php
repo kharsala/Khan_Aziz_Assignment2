@@ -17,8 +17,8 @@
             <a href="index.php">Home</a>
           <a href="logout.php">logout</a>
           <a  href ="userPage.php"> My-Profile</a>
-          <a class="active" href="blogs.php">View-Posts</a>
-          <a  href="post.php">Create-Post</a>
+          <a class="active" href="blogs.php">GlobalPosts</a>
+          <a  href="post.php">Post</a>
           <!--<a href ="Admin.php">Admin-Login</a> -->
         <!--  <a href ="userPage.php"> My-Profile</a> -->
       </nav>
@@ -59,11 +59,6 @@
                 <!--  <div class="fakeimg" style="height:200px;">Image</div> -->
                     <p>'.$output.'</p>
 
-                    <form action="deleteBlog.php" method = "post">
-                    <input type = "hidden" name="id" value="'.$id.'">
-                    <input type = "hidden" name="username" value= "'.$userName.'" >
-                      <input type = "submit" value="Delete">
-                    </form>
 
           </div>
           ';

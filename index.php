@@ -15,8 +15,9 @@
                <a class = "active" href="index.php">Home</a>
                <a href="login.php">Login</a>
                <a href="registration.php">Sign-Up</a>
-               <a href="blogs.php">View-Posts</a>
+               <a href="blogs.php">GlobalPosts</a>
                <a href ="userPage.php"> My-Profile</a>
+                <a href ="post.php"> My-Posts</a>
         </nav>
     </header>
     <div>

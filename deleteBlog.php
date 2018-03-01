@@ -17,7 +17,7 @@
     $postID = $_POST['id'];
     $delete = "DELETE FROM posts Where Id = $postID";
      mysqli_query($mysqli, $delete);
-     header("Location: blogs.php");
+     header("Location: post.php");
 
   }
 
