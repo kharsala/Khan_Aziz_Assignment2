@@ -1,6 +1,9 @@
 <?php
 session_start();
- require_once 'ConnectorDb.php';
+ include_once ("ConnectorDb.php");
+ if(!isset($_SESSION['id'])){
+      header("Location: login.php");
+ }
 
  $edit_state = false;
 
@@ -9,11 +12,7 @@ session_start();
      $username = ($_POST['username']);
      $email = ($_POST['email']);
      $password = ($_POST['password']);
-
-     $query = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password') ";
-     mysqli_query($database, $query);
-     $_SESSION['message'] = "User Created!";
-     header('location: Admin.php')
+     header('location: Admin.p');
    }
 
 //if edit option is selected
@@ -23,20 +22,20 @@ session_start();
     $email = mysqli_real_escape_string($_POST['email']);
     $password = mysqli_real_escape_string($_POST['password']);
 
-    mysqli_query($database, "UPDATE users SET username='$username', email='$email', password='$password' WHERE id=$id");
+    mysqli_query($mysqli, "UPDATE users SET username='$username', email='$email', password='$password' WHERE id=$id");
     $_SESSION['message'] = "Information Saved!";
-    header('location: Admin.php')
+    header('location: Admin.php');
   }
 
 //if delete option is selected
   if(isset($_GET['delete'])){
     $id = $_GET['delete'];
-    mysqli_query($database, "DELETE FROM users WHERE id=$id")
+    mysqli_query($mysqli, "DELETE FROM users WHERE id=$id");
     $_SESSION['message'] = "Information Deleted!";
-    header('location: Admin.php')
+    header('location: Admin.php');
   }
  //to display records
- $results = mysqli_query($database, "SELECT * FROM users");
+ $results = mysqli_query($mysqli, "SELECT * FROM users");
 
 
  ?>

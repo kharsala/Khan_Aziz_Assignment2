@@ -222,12 +222,6 @@ img{
     padding-left: 20px;
 }
 
-/* Fake image */
-.fakeimg {
-    background-color: #aaa;
-    width: 100%;
-    padding: 20px;
-}
 
 /* Add a card effect for articles */
 .card {
@@ -242,13 +236,12 @@ img{
     display: table;
     clear: both;
 }
-<<<<<<< HEAD
+
 .avatar {
     vertical-align: middle;
     width: 100px;
     height: 100px;
     border-radius: 100%;
-=======
 
 .edit_btn{
   text-decoration: none;
@@ -264,5 +257,5 @@ img{
   background: #800000;
   color: white;
   border-radius: 5px;
->>>>>>> a3041dd8cc09a279584d2bece7fb8747613fdd8f
+
 }

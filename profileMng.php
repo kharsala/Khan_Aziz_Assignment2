@@ -1,22 +1,87 @@
 <?php
   session_start();
   include_once("ConnectorDb.php");
+
 ?>
 <?php
-  if (isset($_POST['file'])){
-    //$pid =$_SESSION['id'];
-    //$pImg= "SELECT * FROM Profileimage where userId= $pid ";
-    //$resultImg = $mysqli->query($pImg);
-    //check a statis
-  $target_dir = "image/";
-  $target_file = $target_dir . basename($_FILES["file"]["name"]);
-    move_uploaded_file($_FILES["file"]["tmp_name"],  "image/". $_FILES['file']['name']);
+   //php for dealing with the avatar image upload
+      $targetImg_dir = 'image/';
+      @$targetfile = $targetImg_dir . basename($_FILES['file']['name']);
+    @$imgName = $_FILES['file']['name'];
+      $upload = 1;
+      $FileType = strtolower(pathinfo($targetfile, PATHINFO_EXTENSION));
+      if (isset($_POST['file'])){
+
+         $check = getimagesize($_FILES["file"]["tmp_name"]);
+         if($check !== false) {
+        echo "File  " . $check["mime"] ."<br>";
+        $upload = 1;
+        } else {
+          echo "File is not an image.";
+          $upload = 0;
+        }
+        if (file_exists($targetfile)) {
+            echo "Sorry, file already exists.". "<br>";
+              $upload= 0;
+            }
+    if ($_FILES["file"]["size"] > 500000)
+    {
+        echo "Sorry, your file is too large.";
+        $upload = 0;
+    }
+    //getting the file type
+    if($FileType != "jpg" && $FileType != "png" && $FileType != "jpeg" && $FileType != "gif" )
+    {
+      echo " only JPG, JPEG, PNG & GIF files.";
+      $upload= 0;// no upload
+    }
+    //now check if a nupload was made
+    if($upload == 0){
+      echo "Upload failed";
+    }else{
+
+      if(move_uploaded_file($_FILES["file"]["tmp_name"], $targetfile)){
+            echo "succceful upload";
+
+      }else{
+        echo "Failed to upload Img";
+      }
+
+
+
+    }
     $query = "UPDATE users SET profileImg = ' ". $_FILES['file']['name']."'  where UserName = '".$_SESSION['username']." '  " ;
     $mysqli->query($query);
 
+    $pid = $_SESSION['id'];
+    $Query = "SELECT Id, UserName, EmailAddress, profileImg from users where Id= $pid ";
+    $result = $mysqli->query($Query);
+      if($result->num_rows > 0){
 
 
-  }
+          while($row = $result->fetch_assoc()){
+
+
+            if(($row['profileImg']) == null ){
+
+          echo'<img src="image/default.png" alt="Avatar" class="avatar"> ';
+        }
+        else{
+                $image = $targetImg_dir . $row['profileImg'];
+                echo'<img src="'.$targetfile.'" alt="Avatar" class="avatar"> ';
+        }
+
+          }
+
+
+      }else{
+
+      }
+
+
+
+
+}
 
  ?>
 
@@ -61,18 +126,23 @@
                     echo "<th>Edit-User</th>";
               echo "</tr>";
               while($row = $result->fetch_assoc()){
-                  $profileImg = $row['profileImg'];
-                if(($row['profileImg']) == null ){
+                if(($row['profileImg']) = null ){
 
-                echo'<img src="image/default.jpg" alt="Avatar" class="avatar"> ';
-              }
-              else{
+              echo'<img src="image/default.png" alt="Avatar" class="avatar"> ';
+            }
+            else{
 
-              }
+                    echo'<img src="'.$targetfile.'" alt="Avatar" class="avatar"> ';
+            }
+
+
+
+
+
                 echo'
                   <form action="profileMng.php" method = "POST" enctype="multipart/form-data" >
                    <input type="file" name="file">
-                    <input type ="submit" name="file" value="upload-Image">
+                    <input type ="submit" name="file" value="upload-Avatar">
                   </form>
                 ';
                       echo "<tr>";

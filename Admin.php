@@ -1,4 +1,5 @@
-<?php include('AdminOptions.php');
+<?php
+include('AdminOptions.php');
 
  //Start session
 session_start();
@@ -14,7 +15,6 @@ include_once('ConnectorDb.php');
     $email = $record['email'];
     $password = $record['password'];
     $id = $recprd['id'];
-
   }
 
 
