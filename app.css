@@ -11,7 +11,7 @@ body{
 }
 a{
 
-  color: Gray;
+  color: black;
   text-decoration: none;
 
 }
@@ -122,6 +122,16 @@ input[type=text], select {
     border-radius: 4px;
     box-sizing: border-box;
 }
+input[type=email], select {
+    width: 30%;
+    padding: 5px 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
 input[type=password], select {
     width: 30%;
     padding: 5px 10px;
@@ -199,6 +209,7 @@ img{
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
+
 }
 
 #globalnav a:hover {
@@ -209,6 +220,19 @@ img{
 #globalnav a.active {
   background-color: Green;
   color: white;
+}
+.alert-error {
+  color: #f00;
+  background-color: #360e10;
+  box-shadow: 0 0 0 1px #551e21 inset, 0 5px 10px rgba(0, 0, 0, 0.75);
+}
+.alert:empty{
+    display: none;
+}
+.alert-success {
+  color: #21ec0c;
+  background-color: #15360e;
+  box-shadow: 0 0 0 1px #2a551e inset, 0 5px 10px rgba(0, 0, 0, 0.75);
 }
 .leftcolumn {
     float: left;
@@ -221,7 +245,6 @@ img{
     width: 25%;
     padding-left: 20px;
 }
-
 
 /* Add a card effect for articles */
 .card {

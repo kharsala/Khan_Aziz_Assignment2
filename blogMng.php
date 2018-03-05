@@ -2,7 +2,7 @@
   session_start();
   if(!isset($_SESSION['id'])){
 
-    header("Location: login.php");
+    header("Location: login.php?PleaseLogin");
 
 
   }
@@ -12,7 +12,7 @@
  include_once('ConnectorDb.php');
 
 
-  if($_SERVER["REQUEST_METHOD"] == "POST")
+  if(isset($_POST['post']) )
   {
           $title = strip_tags($_POST['title']);
           $content = strip_tags($_POST['content']);
@@ -31,7 +31,7 @@
           $stmt->execute();
        $stmt->close();
        echo"Blog Sucessfuly Posted";
-      header("location: post.php");
+      header("location: blogMng.php");
 
 
 
@@ -50,31 +50,33 @@
 
    <div class="navigation">
 
-               <header>
-                 <nav id="globalnav">
+     <header>
+       <nav id="globalnav">
 
-                       <a href="index.php">Home</a>
-                     <a href="logout.php">logout</a>
-                     <a  href ="userPage.php"> My-Profile</a>
-                     <a href="blogs.php">GlobalPosts</a>
-                     <a class ="active" href="post.php">Post</a>
-                     <!--<a href ="Admin.php">Admin-Login</a> -->
-                   <!--  <a href ="userPage.php"> My-Profile</a> -->
-                 </nav>
-               </header>
+
+
+              <a   href="index.php">Home</a>
+                <a href="logout.php">logout</a>
+             <a href="profileMng.php">ProfileMng</a>
+             <a  class = "active" href="blogMng.php">BlogMng</a>
+
+
+       </nav>
+   </header>
+
    </div>
 
-
+      <h1>Welcome <?php echo $_SESSION['username'];  ?></h1>
        <h1>Create-Blog</h1>
 
 
 
 
    <div class="main-body-Form">
-      <form action="post.php" method="post" enctype="multipart/form-data" >
+      <form action="blogMng.php" method="post" enctype="multipart/form-data" >
         <input type="text" name="title" placeholder="Title"><br>
         <textarea type="text" name="content" placeholder="Start Writing"></textarea><br>
-        <input type="submit" value = "Post Blog">
+        <input type="submit" value = "Post Blog" name="post">
         <input type="reset" value = "Erase-All">
 
       </form>
@@ -114,13 +116,14 @@
                         <p>'.$output.'</p>
 
                         <form action="editBlog.php" method = "post">
+                          <input type = "hidden" name="title" value="'.$title.'">
                           <input type = "submit"  value="Edit">
                         </form>
 
                         <form action="deleteBlog.php" method = "post">
                         <input type = "hidden" name="id" value="'.$id.'">
                         <input type = "hidden" name="username" value= "'.$userName.'" >
-                          <input type = "submit" value="Delete">
+                          <input type = "submit" name="delete" value="Delete">
                         </form>
 
 
@@ -137,9 +140,10 @@
 
 
    </div>
-   <div>
-     <footer></footer>
-   </div>
+
+       <div class="footer">
+        <footer id="cpright" >Copyrights of Arsalan Khan And Hasib Aziz ..... 2018</footer>
+      </div>
 
  </body>
 

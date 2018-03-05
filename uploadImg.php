@@ -31,7 +31,7 @@ if(isset($_POST['upload'])){
             //creating a unique id for each image
             $filenewName = "default".$id.".".$fileActualExt;
             //add this to root folder of the projects
-            $fileDestination = 'images/ ' .$filenewName;
+            $fileDestination = '../images/ ' .$filenewName;
             //actual functiont to move the file to actual location
             move_uploaded_file($fileTempName, $fileDestination);
             //update the status of the upload

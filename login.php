@@ -2,6 +2,7 @@
 session_start();
  require_once 'ConnectorDb.php';
 
+
 if($_SERVER["REQUEST_METHOD"] == "POST"){
   $username = strip_tags($_POST['username']);
   $password = strip_tags($_POST['password']);
@@ -20,20 +21,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
   $Id = $row['Id'];
   $db_password = $row['Password'];
-//if password matches create a session nane and id for that user
+  $role = $row['role'];
+  //if password matches create a session nane and id for that user
   if($password == $db_password){
+
     $_SESSION['username'] = $username;
     $_SESSION['id'] = $Id;
+
+
+    //if the user role is admin that redirect to admin page
     //redirect the iuser to the users page
-    header("Location: userPage.php");
+    if($role == "admin"){
+      $_SESSION['role'] = $role;
+      header("Location: admin.php");
+    }else{
+      //redirect the iuser to the users page
+          header("Location: blogMng.php");
+    }
 
   }else{
     //diplay error
-    echo "Invalid Username or Password";
+    $_SESSION['message'] ="Invalid Username or Password";
   }
-
-
-
 
 }
 ?>
@@ -46,24 +55,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 <body>
 
-      <header>
-        <nav id="globalnav">
-
-          <a href="index.php">Home</a>
-            <a class="active" href="login.php">Login</a>
-            <a  href="registration.php">Sign-Up</a>
+  <header>
+    <nav id="globalnav">
 
 
-        </nav>
-    </header>
+           <a  href="index.php">Home</a>
+           <a class = "active" href="login.php">Login</a>
+           <a href="registration.php">Sign-Up</a>
+         <a href="profileMng.php">ProfileMng</a>
+          <a  href="blogMng.php">BlogMng</a>
+
+    </nav>
+</header>
     <div div class="main-body-Form">
         <h1>Login</h1>
       <form action="login.php" method="post">
-        UserName:<br>
-        <input type="text" name="username" required/><br>
-        Password:<br>
-        <input type="password" name="password" required/><br>
-        <input type="submit" name="submit" value="Login"/>
+        <div class="alert alert-error"></div>
+        <div class="alert alert-error"><?= $_SESSION['message'] ?></div>
+        <input type="text" placeholder="User Name" name="username" required /><div>
+        <input type="password" placeholder="Password" name="password" autocomplete="new-password" required /><div>
+        <input type="submit" value="Login"/>
         <input type="reset" value="Clear"/>
       </form>
         <p>Don't have an account? <a id = "login" href="registration.php">Sign-Up</a></p>
