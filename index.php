@@ -8,12 +8,18 @@
 ini_set('display_errors',1);
 ini_set('log_errors',1);
 ini_set('error_log', dirname(__FILE__) . '/log.txt');
-error_reporting(E_ALL);
+error_reporting(E_ALL ^ E_DEPRECATED);
 
-require 'logtest.com';
+//require 'logtest.com';
 
  ?>
+ <?php
+ // Send error message to the log.txt file if failed to connect to db
+ if (!mysqli_connect("$dbhost", "$username", "$dbpassword", "$database")) {
+     error_log("Failed to connect to database!", 3, dirname(__FILE__) . '/log.txt');
+ }
 
+ ?>
 
 <html>
 
