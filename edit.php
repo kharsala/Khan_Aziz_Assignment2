@@ -54,7 +54,7 @@
            </form>
 
     <div class="footer">
-        <h2 id="cpright">Copyrights Khan and Aziz...2018</h2>
+        <h2 id="cpright">Copyrights  of Khan and Aziz...2018</h2>
     </div>
 
   </body>
