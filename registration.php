@@ -39,7 +39,7 @@ if(isset($_POST['register'])){
                     $stmt ->bind_param("ssss",   $username , $email, $password, $avatar_path );
                      $stmt->execute();
                     if($stmt->execute() === true){
-                      $_SESSION['message'] = 'Successfuly registered ';
+                      $_SESSION['message'] = 'User Successfuly Registered ';
                       $stmt->close();
 
                             header("Location: login.php");
@@ -61,7 +61,7 @@ if(isset($_POST['register'])){
 
 
 }    else{
-        $_SESSION['message'] = "Password mismatch";
+        $_SESSION['message'] = "Password Mismatch";
     }
   }
 
@@ -104,14 +104,14 @@ if(isset($_POST['register'])){
             <input type="submit" value="Register" name="register"/>
             <input type="reset" value="Reset" name="reset"/>
 
-            <p>Already have an account? <a id = "login" href="login.php">Login here</a></p>
+            <p>Already Have an Account? <a id = "login" href="login.php">Login Here</a></p>
      </form>
    </div>
 
 
        <div class="footer">
 
-        <footer id="cpright" >   copyrights Arsalan Khan And Hasib Aziz ..... 2018   </footer>
+        <footer id="cpright" >   Copyrights of Arsalan Khan And Hasib Aziz ..... 2018   </footer>
 
      </div>
 
