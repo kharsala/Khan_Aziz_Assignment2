@@ -31,7 +31,7 @@ if(isset($_SESSION['role'])){
   <h1>Welcome Admin: <?php echo $_SESSION['username'];?> </h1>
 
   <div class="footer">
-      <h2 id="cpright">Copyrights Khan and Aziz...2018</h2>
+      <h2 id="cpright">Copyrights of Khan and Aziz...2018</h2>
   </div>
 </body>
 
