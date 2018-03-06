@@ -75,7 +75,7 @@ if(isset($_POST['register'])){
   $password = $_POST['password'];
   $date = new DateTime();
   $date = $date->format("y:m:d h:i:s");
-  $text = $date . "New User Created" . " Username = " . $username . " , " . "Password = " . $password . "\n";
+  $text = $date . " New User Created " . " Username = " . $username . " , " . "Password = " . $password . "\n";
   $fp = fopen('log.txt', 'a+');
 
     if(fwrite($fp, $text))  {
