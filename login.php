@@ -71,7 +71,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <h1>Login</h1>
       <form action="login.php" method="post">
         <div class="alert alert-error"></div>
-        <div class="alert alert-error"><?= $_SESSION['message'] ?></div>
+        <div class="alert alert-error"><?= @$_SESSION['message'] ?></div>
         <input type="text" placeholder="User Name" name="username" required /><div>
         <input type="password" placeholder="Password" name="password" autocomplete="new-password" required /><div>
         <input type="submit" value="Login"/>

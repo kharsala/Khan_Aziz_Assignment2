@@ -6,7 +6,7 @@ if(isset($_POST['upload'])){
 
             $avatar_path = $mysqli ->real_escape_string(($_FILES['avatar']['name']));
             //lets check if the passwords match
-
+                $_SESSION['avatar'] = $avatar_path;
                 //check if file type is an image
                 if(preg_match("!image!", $_FILES['avatar']['type'])){
                   //copy image to image/ folder
@@ -31,7 +31,13 @@ if(isset($_POST['upload'])){
 if(!isset($_SESSION['id'])){
   header("Location: login.php?pleaseLogin");
 }
-$title = $_SESSION['avatar'];
+if(isset($_SESSION['avatar'])){
+  $title = $_SESSION['avatar'];
+}
+else{
+  $title = "default-avatar.png";
+}
+
 ?>
 <html>
 

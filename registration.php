@@ -29,9 +29,9 @@ if(isset($_POST['register'])){
             //lets check if the passwords match
             if($password == $cpassword){
                 //check if file type is an image
-                if(preg_match("!image!", $_FILES['avatar']['type'])){
+              //  if(preg_match("!image!", $_FILES['avatar']['type'])){
                   //copy image to image/ folder
-                  if(copy($_FILES['avatar']['tmp_name'], $avatar_path)){
+                //  if(copy($_FILES['avatar']['tmp_name'], $avatar_path)){
                     $_SESSION['avatar'] = $avatar_path;
                     //now inserting data into the users database
                     $query = "INSERT INTO users (UserName, EmailAddress, Password, avatar) VALUES (?, ?, ?, ?)";
@@ -45,7 +45,7 @@ if(isset($_POST['register'])){
                             header("Location: login.php");
 
 
-                    }else{
+                    /*}else{
                       $_SESSION['message'] = "Failed to add $username ";
                     }
 
@@ -56,13 +56,14 @@ if(isset($_POST['register'])){
 
                 }else{
                     $_SESSION['message'] = "Please only upload a GIF, JPG, PNG images";
-                }
-            }
-            else{
-                $_SESSION['message'] = "Password mismatch";
+                }*/
             }
 
-}
+
+}    else{
+        $_SESSION['message'] = "Password mismatch";
+    }
+  }
 
 ?>
 
@@ -94,15 +95,14 @@ if(isset($_POST['register'])){
        <h1>Create an account</h1>
 
             <div class="alert alert-error"></div>
-            <div class="alert alert-error"><?= $_SESSION['message'] ?></div>
+           <div class="alert alert-error"><?= @$_SESSION['message'] ?></div>
             <input type="text" placeholder="User Name" name="username" required /><div>
             <input type="email" placeholder="Email" name="email" required /><div>
             <input type="password" placeholder="Password" name="password" autocomplete="new-password" required /><div>
             <input type="password" placeholder="Confirm Password" name="confirmpassword" autocomplete="new-password" required /><div>
-            <div class="avatar"><label>avatar: </label><input type="file" name="avatar" accept="image/*" required /></div>
+          <!--  <div class="avatar"><label>avatar: </label><input type="file" name="avatar" accept="image/*" required /></div> -->
             <input type="submit" value="Register" name="register"/>
-            <input type="reset" value="Register" name="reset"/>
-
+            <input type="reset" value="Reset" name="reset"/>
 
             <p>Already have an account? <a id = "login" href="login.php">Login here</a></p>
      </form>
