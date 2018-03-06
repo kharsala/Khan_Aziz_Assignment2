@@ -223,7 +223,7 @@ img{
 }
 .alert-error {
   color: #f00;
-  background-color: #360e10;
+  background-color: darkgreen;
   box-shadow: 0 0 0 1px #551e21 inset, 0 5px 10px rgba(0, 0, 0, 0.75);
 }
 .alert:empty{
