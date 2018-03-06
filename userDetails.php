@@ -74,7 +74,7 @@ session_start();
                 $mysqli->close();
       ?>
       <div class="footer">
-                <footer id="cpright" >copyrights Arsalan Khan And Hasib Aziz ..... 2018</footer>
+                <footer id="cpright" >Copyrights of Arsalan Khan And Hasib Aziz ..... 2018</footer>
       </div>
     </body>
 
