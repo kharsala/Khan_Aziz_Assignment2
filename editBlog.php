@@ -81,7 +81,7 @@ $username = $_SESSION['username'];
        <input type="reset" value = "Erase-All">
 
      </form>
-     <h2>Blog That You are Editing</h2>
+     <h2>Blog To Be Edited Editing</h2>
 
      <?php
        require_once("nbbc/nbbc.php");
@@ -89,7 +89,7 @@ $username = $_SESSION['username'];
        //name of the user
       $title = $_POST['title'];
        $bbcode = new BBCode;
-       $selectQ = "SELECT  * from posts WHERE title ='$title'  ORDER BY Id DESC";
+       $selectQ = "SELECT  * FROM posts WHERE title ='$title'  ORDER BY Id DESC";
        $result = $mysqli->query($selectQ);
 
        if($result->num_rows > 0){
@@ -122,7 +122,7 @@ $username = $_SESSION['username'];
          }
          //echo $admin;
        }else{
-         echo "Not Posts Yet";
+         echo "No Posts Yet";
        }
 
 
